@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace API.Models;
 
 /// <summary>
@@ -10,6 +13,7 @@ public class Photography {
     /// PK
     /// </summary>
     
+    [Key]
     public int Id { get; set; }
     
     /// <summary>
@@ -41,5 +45,25 @@ public class Photography {
     /// </summary>
     
     public decimal Price { get; set; }
+    
+    /*
+     * relacionamentos 1-N
+     */
+    
+    [ForeignKey(nameof(Category))]
+    
+    public int CategoryFk { get; set; }
+    
+    /// <summary>
+    /// FK para a categoria da fotografia
+    /// </summary>
+    
+    public required Category Category { get; set; }
+    
+    /*
+     * relacionamento M-N
+     */
+    
+    public required ICollection<Purchase> ListOfPhotos { get; set; }
     
 }

@@ -48,4 +48,14 @@ public class MyUser {
 
     public required string CellPhone { get; set; }
     
+    /*
+     * relacionamentos 1-N
+     */
+    
+    /// <summary>
+    /// lista das compras de fotografias efetuadas pelo cliente
+    /// </summary>
+
+    public required ICollection<Purchase> ListOfPurchases { get; set; }
+    
 }

@@ -18,4 +18,10 @@ public class Category {
     
     public required string Name { get; set; }
     
+    /*
+     * relacionamentos 1-N
+     */
+    
+    public required ICollection<Photography> ListOfPhotos { get; set; }
+    
 }
