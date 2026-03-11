@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace API.Models;
 
 /// <summary>
@@ -9,6 +11,8 @@ public class MyUser {
     /// <summary>
     /// PK
     /// </summary>
+    
+    [Key]
     
     public int Id { get; set; }
     
