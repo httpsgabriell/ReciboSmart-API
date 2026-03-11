@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace API.Models;
 
 /// <summary>
@@ -11,17 +13,21 @@ public class Category {
     /// </summary>
     
     public int Id { get; set; }
-    
+
     /// <summary>
     /// nome da categoria
     /// </summary>
-    
-    public required string Name { get; set; }
+
+    [StringLength(20)]
+    [Display(Name = "Nome da Categoria")]
+    [Required(ErrorMessage = "{0} é de preenchimento obrigatorio")]
+
+    public required string Name { get; set; } = "";
     
     /*
      * relacionamentos 1-N
      */
-    
-    public required ICollection<Photography> ListOfPhotos { get; set; }
-    
+
+    public required ICollection<Photography> ListOfPhotos { get; set; } = [];
+
 }

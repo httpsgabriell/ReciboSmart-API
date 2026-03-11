@@ -1,69 +1,75 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace API.Models;
 
-/// <summary>
-/// objetos a serem vendidos na loja
-/// </summary>
-
-public class Photography {
+public class Photography{
     
     /// <summary>
     /// PK
     /// </summary>
-    
     [Key]
     public int Id { get; set; }
     
     /// <summary>
     /// nome associado à fotografia
     /// </summary>
-    
-    public required string Title { get; set; }
-    
-    /// <summary>
-    /// descrição (opcional) da fotografia
-    /// </summary>
-    
-    public required string Description { get; set; }
+    [StringLength(50)]
+    [Display(Name = "Título")]
+    [Required(ErrorMessage = "{0} é de preenchimento obrigatório")]
+    public String Title { get; set; } = string.Empty;
     
     /// <summary>
-    /// nome do ficheiro que contém a fotografia
+    /// Descrição (opcional) da fotografia
     /// </summary>
-    
-    public required string File { get; set; }
+    [StringLength(300)]
+    [Display(Name = "Descrição")]
+    public String? Description { get; set; }
+
+    /// <summary>
+    /// Nome do ficheiro que contém a fotografia
+    /// </summary>
+    public String File { get; set; } = ""; // <=> string.Empty;
     
     /// <summary>
-    /// data em que a fotografia foi tirada
+    /// Data em que a fotografia foi tirada
     /// </summary>
-    
-    public required DateTime Date { get; set; }
+    [Display(Name = "Data")]
+    [Required(ErrorMessage = "{0} é de preenchimento obrigatório")]
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+    public DateTime Date { get; set; }
     
     /// <summary>
-    /// preço de venda da fotografia
+    /// Preço da fotografia
     /// </summary>
+    [Display(Name = "Preço")]
     
     public decimal Price { get; set; }
     
     /*
-     * relacionamentos 1-N
+     * Relacionamentos 1-N
      */
     
-    [ForeignKey(nameof(Category))]
-    
-    public int CategoryFk { get; set; }
-    
     /// <summary>
-    /// FK para a categoria da fotografia
+    /// FK para a Categoria da fotografias
+    /// </summary>
+    [ForeignKey(nameof(Category))]
+    public required int CategoryFk { get; set; }
+    /// <summary>
+    /// FK para a Categoria das fotografias
     /// </summary>
     
+    [ValidateNever]
     public required Category Category { get; set; }
     
     /*
-     * relacionamento M-N
+     * Relacionamentos M-N
      */
     
-    public required ICollection<Purchase> ListOfPhotos { get; set; }
-    
+    /// <summary>
+    /// Lista de compras associadas à fotografia
+    /// </summary>
+    public required ICollection<Purchase> ListOfPurchases { get; set; }
 }
