@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "MtDmT7UPXiJ2P2tPIqPA54yCu71cprUTfiZEJl1mZRk=",
+  "Source": "ReciboSmart.API",
+  "BasePath": "_content/ReciboSmart.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
